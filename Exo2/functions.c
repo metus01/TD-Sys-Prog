@@ -7,14 +7,15 @@ void init_board(void)
     {
         for (int j = 0; j < SIZE; j++)
         {
-            move(i * 2, j * 4);
-            printw("+---");
+            move(i, j * 2);
+            printw("|"); 
         }
-        move(i * 2 + 1, 0);
-        for (int j = 0; j < COLS; j++)
-        {
-            printw("|   "); 
-        }
-        printw("|\n"); 
     }
+    move(SIZE, 0);
+    for (int j = 0; j < SIZE - 1; j++)
+    {
+        printw("+-");
+    }
+    move(SIZE, (SIZE - 1) * 2);
+    printw("+");
 }

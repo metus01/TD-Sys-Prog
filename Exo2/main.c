@@ -3,7 +3,7 @@ int main(void)
 {
     INIT_SCREEN();
     init_board();
-    play();
-    getch();
+    //play();
+    //getch();
     DONE_SCREEN();
 }
