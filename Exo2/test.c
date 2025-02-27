@@ -55,7 +55,9 @@ int main()
         printw("+");
 
     refresh(); // Met à jour l'affichage
-    getch();   // Attend une entrée utilisateur
+    char input =   getch();   // Attend une entrée utilisateur et renvoie son code ascii
+    
+    printf("%d" , input);
     endwin();  // Ferme ncurses
     return 0;
 }

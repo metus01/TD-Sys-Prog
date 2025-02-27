@@ -1,5 +1,7 @@
 #include <ncurses.h>
 #define SIZE 16
+#define PLAYERS 2
+
 void init_board(void)
 {
     // la fonction initialise la grille de jeu en la vidant entièrement.
@@ -25,5 +27,20 @@ void draw_board(void)
 }
 int get_col(void)
 {
+    char input =   getch(); 
+    if(input == KEY_BACKSPACE)
+    {
+        return -1;
+    }
+    char CHIP[PLAYERS] = "XO";
+    for (int i = 0; i < PLAYERS; i++)
+    {
+        /* code */
+        if(input == CHIP[i])
+        {
+            break;
+            // renoyer le numéro de colonne correspondant
+        }
+    }
     
 }
