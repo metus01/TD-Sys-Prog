@@ -45,12 +45,14 @@ int main()
             move(i, j * 2);
             printw("|"); // Affichage des séparateurs verticaux
         }
-        move(SIZE, 0); // Placer le curseur en dessous de la grille
-        for (int j = 0; j < SIZE; j++)
+    }
+    move(SIZE, 0); // Placer le curseur en dessous de la grille
+        for (int j = 0; j < SIZE-1; j++)
         {
             printw("+-"); // Afficher la ligne du bas
         }
-    }
+        move(SIZE,(SIZE-1)*2);
+        printw("+");
 
     refresh(); // Met à jour l'affichage
     getch();   // Attend une entrée utilisateur
