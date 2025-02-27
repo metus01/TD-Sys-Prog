@@ -1,0 +1,51 @@
+On va écrire un puissance 4 en C. Le jeu se joue à deux, chaque joueur dépose un pion dans une colonne, ce pion
+tombe au bas de la colonne ou sur le dernier pion posé auparavant. Le gagnant est le premier joueur qui parvient à
+aligner quatre pions dans n’importe quelle direction, y compris les diagonales.
+☼ Respectez bien les prototypes des fonctions, et leur fonctionnement tel qu’il est décrit dans l’énoncé. Cela permettra à
+badass de les tester, et cela vous facilitera la construction du programme complet.
+Pour l’affichage, on utilisera la bibliothèque ncurses, classique sous Unix, qui permet d’utiliser le terminal
+comme une matrice de caractères et d’y faire des dessins à base de texte. Par exemple, notre jeu s’affichera
+comme représenté sur la figure 1. Sur cette figure, on donne aussi le code source en C permettant d’inclure
+la bibliothèque ncurses, ainsi qu’une fonction INIT_SCREEN() pour initialiser le terminal, et une autre
+DONE_SCREEN() pour le rétablir le terminal à son fonctionnement normal et quitter le jeu.
+☼ Pour compiler sous CoW avec la bibliothèque ncurses, prenez soin d’ajouter le commentaire // ldd: -lncurses
+comme dans le code source fourni.
+La première fonction se charge aussi d’initialiser le générateur de nombres pseudoaléatoires qu’on utilisera
+pas la suite pour choisir une case au hasard. On dispose alors des fonctions suivantes :
+— move(0,0) ⇒ déplace le curseur dans le coin supérieur gauche du terminal ;
+— printw("...", ...) ⇒ version de printf compatible avec ncurses ;
+— refresh() ⇒ affiche sur le terminal les résultat des appels à printw ;
+— getch() ⇒ lit une touche du clavier, y compris les touches de direction, et renvoie soit la valeur du char correspondant à la touche, soit un code spécial défini par une constante, comme
+KEY_BACKSPACE que nous utiliserons.
+Toutes ces fonctions nous serviront pour gérer le jeu. Dans le code source fourni sur la figure 1, on
+trouve aussi la déclaration de la structure pour stocker la grille de jeu. Notez que la taille de la grille
+est paramétrée par SIZE et que tout votre programme doit être capable de gérer une valeur de SIZE
+entre 4 et 26. Il s’agit d’un simple tableau de char à deux dimensions qui contiendra soit des espaces
+(caractère ' ') pour une case vide, soit 'X' ou 'O' pour un pion d’un joueur. Notez aussi les déclarations
+de NB_PLAYERS et CHIP qui permettent en théorie d’avoir plus de deux joueurs (et donc d’autres caractères
+pour les jetons). Il serait bien que votre programme soit capable de fonctionner quel que soit le nombre
+de joueurs. Enfin, même si vous voudrez utiliser vos propres version de main au cours du développement
+afin de tester vos fonctions intermédiaires, veillez à utiliser celle qui vous est donnée dans la version finale.
+1. Écrivez une fonction void init_board(void) qui initialise la grille de jeu en la vidant entièrement.
+2. Écrivez une fonction void draw_board (void) qui affiche la grille de jeu comme présentée sur la
+figure 1. La ligne du bas doit correspondre à board[0].
+3. Écrivez une fonction int get_col (void) qui lit des touches au clavier jusqu’à ce qu’on tape soit :
+— backspace, et alors la fonction renvoie -1 ;
+— une lettre de colonne valide, et alors la fonction renvoie le numéro de colonne correspondant ;
+— toutes les autres touches sont lues mais ignorées.
+4. Écrivez une fonction int add_coin (int col, int player) qui ajoute un pion pour le joueur
+player (qui vaut 0 ou 1) dans la colonne col, et renvoie le numéro du prochain joueur à jouer :
+— player si la colonne est pleine (il recommence) ;
+— le numéro de l’autre joueur si le pion a pu être ajouté.
+5. Écrivez une fonction int game_over (void) qui renvoie :
+— 0 si personne n’a gagné et que la grille n’est pas pleine ;
+— 1 si personne n’a gagné et que la grille est pleine (le jeu est terminé sans gagnant) ;
+— sinon, le code ASCII du caractère correspondant au gagnant.
+De façon contre-intuitive, cette fonction sera plus simple si vous la pensez pour qu’elle fonctionne
+avec n’importe quel nombre de joueurs (et donc n’importe quel caractère pour leurs jetons).
+6. Écrivez une fonction void play (void) pour dérouler le jeu :
+— tant qu’il n’y a pas de gagnant ou que la grille n’est pas pleine :
+— le joueur dont c’est le tour dépose un pion en tapant la lettre de la colonne,
+— s’il choisit une colonne pleine, rien ne se passe et c’est à nouveau son tour,
+— sinon, on passe au joueur suivant ;
+— on affiche le résultat de la partie.
