@@ -8,7 +8,7 @@ void init_board(void)
         for (int j = 0; j < SIZE; j++)
         {
             move(i, j * 2);
-            printw("|"); 
+            printw("|");
         }
     }
     move(SIZE, 0);
@@ -18,4 +18,12 @@ void init_board(void)
     }
     move(SIZE, (SIZE - 1) * 2);
     printw("+");
+}
+void draw_board(void)
+{
+    refresh();
+}
+int get_col(void)
+{
+    
 }
