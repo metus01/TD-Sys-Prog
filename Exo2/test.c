@@ -56,8 +56,10 @@ int main()
 
     refresh(); // Met à jour l'affichage
     char input =   getch();   // Attend une entrée utilisateur et renvoie son code ascii
-    
-    printf("%d" , input);
+    int y , x;
+    getyx(stdscr , y , x);
+    printf("%d" , x);
+    //printf("%d" , input);
     endwin();  // Ferme ncurses
     return 0;
 }

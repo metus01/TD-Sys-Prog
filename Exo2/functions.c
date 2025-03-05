@@ -22,13 +22,13 @@ void init_board(void)
     printw("+");
 }
 void draw_board(void)
-{
+{   
     refresh();
 }
 int get_col(void)
 {
-    char input =   getch(); 
-    if(input == KEY_BACKSPACE)
+    char input = getch();
+    if (input == KEY_BACKSPACE)
     {
         return -1;
     }
@@ -36,11 +36,12 @@ int get_col(void)
     for (int i = 0; i < PLAYERS; i++)
     {
         /* code */
-        if(input == CHIP[i])
+        if (input == CHIP[i])
         {
-            break;
             // renoyer le numéro de colonne correspondant
+            int y , x;
+            getyx(stdscr , y , x);
+            return x;
         }
     }
-    
 }
