@@ -38,10 +38,21 @@ int get_col(void)
         /* code */
         if (input == CHIP[i])
         {
-            // renoyer le numéro de colonne correspondant
+            // renoyer le numéro de colonne correspondante
             int y , x;
             getyx(stdscr , y , x);
-            return x;
+            return x; 
         }
     }
+}
+
+int add_coin(int col , int player)
+{
+    //ajoute un pion pour le joueur player et renvoies le numero du prochain joueur à jouer
+    for (int i = 0; i < SIZE ; i++)
+    {
+        /* code */
+        
+    }
+    
 }

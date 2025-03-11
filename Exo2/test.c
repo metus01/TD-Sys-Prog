@@ -35,7 +35,9 @@ int main()
 }*/
 int main()
 {
-    initscr(); // Initialise ncurses
+
+    //initscr(); // Initialise ncurses
+    INIT_SCREEN();
     // move(0, 0);  // Place le curseur en haut à gauche
     // printw("|"); // Affiche "|"
     for (int i = 0; i < SIZE; i++)
@@ -55,10 +57,10 @@ int main()
         printw("+");
 
     refresh(); // Met à jour l'affichage
-    char input =   getch();   // Attend une entrée utilisateur et renvoie son code ascii
+    //char input =   getch();   // Attend une entrée utilisateur et renvoie son code ascii
     int y , x;
     getyx(stdscr , y , x);
-    printf("%d" , x);
+    printw("Curseur à la position : (%d, %d)\n", y, x);
     //printf("%d" , input);
     endwin();  // Ferme ncurses
     return 0;
