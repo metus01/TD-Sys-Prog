@@ -1,2 +1,39 @@
-//Définissez un type number pour représenter des nombres entiers positifs ou nuls en base quelconque
-//parmi 2, 4, 8, 16, 32, et 64, sans limite sur la taille du nombre
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef enum {
+    BASE_2  = 2,
+    BASE_4  = 4,
+    BASE_8  = 8,
+    BASE_16 = 16,
+    BASE_32 = 32,
+    BASE_64 = 64
+} base;
+
+typedef struct 
+{
+    /* data */
+    base base ;
+    uint_fast8_t *digits;
+    int taille;
+    
+} number;
+
+
+void free_number(number nbr)
+{
+    if (&nbr != NULL )
+    {
+        /* code */
+        number *prt;
+        prt = &
+        free(&nbr);
+    }
+    
+}
+
+int is_number (number nbr)
+{
+
+}
