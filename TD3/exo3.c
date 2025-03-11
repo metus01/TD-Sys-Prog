@@ -23,17 +23,11 @@ typedef struct
 
 void free_number(number nbr)
 {
-    if (&nbr != NULL )
+    if (nbr.digits != NULL )
     {
-        /* code */
-        number *prt;
-        prt = &
-        free(&nbr);
+        free (nbr.digits);
     }
-    
 }
 
-int is_number (number nbr)
-{
 
-}
+number to_number (unsigned int nbr, unsigned char base)
