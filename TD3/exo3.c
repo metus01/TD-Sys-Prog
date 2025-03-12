@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 typedef enum
 {
@@ -81,4 +82,20 @@ int is_valid_base(base gived_base)
 unsigned int to_uint (number nbr)
 {
 
+}
+
+int main()
+{
+    int value , base;
+    printf("Entrez la valeur à convertir \n");
+    scanf("%d",&value);
+    printf("Entrez la base de conversion \n");
+    scanf("%d",&base);
+    number new_n = to_number(value,base);
+    printf("La conversion donne : \n");
+    for (size_t i = 0; i < new_n.taille; i++)
+    {
+        printf("%c" , new_n.digits[i]);
+    }
+    
 }
