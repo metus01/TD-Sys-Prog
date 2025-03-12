@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdbool.h>
 
 typedef enum
 {
@@ -72,7 +73,7 @@ number to_number(unsigned int nbr, unsigned char gived_base)
     return new_number;
 }
 
-int is_valid_base(base gived_base)
+bool is_valid_base(base gived_base)
 {
     return (gived_base == BASE_2 || gived_base == BASE_4 || gived_base == BASE_8 ||
             gived_base == BASE_16 || gived_base == BASE_32 || gived_base == BASE_64);
