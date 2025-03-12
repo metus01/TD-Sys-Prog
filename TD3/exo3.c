@@ -34,13 +34,58 @@ void free_number(number nbr)
 number to_number(unsigned int nbr, unsigned char gived_base)
 {
     char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
+    if (gived_base < 2 || gived_base > 64) {
+        fprintf(stderr, "Base non supportée : %d\n", gived_base);
+        exit(EXIT_FAILURE);
+    }
+
+    int size = (nbr == 0) ? 1 : (int)(log(nbr) / log(gived_base)) + 1;
+    char *result = malloc((size + 1) * sizeof(char)); // +1 pour '\0'
+
+    if (!result) {
+        fprintf(stderr, "Erreur d'allocation mémoire\n");
+        exit(EXIT_FAILURE);
+    }
+
+    int index = 0;
+
+    if (nbr == 0)
+    {
+        result[index++] = '0';
+        result[index] = '\0';
+        number new_number = {gived_base, result, size};
+        return new_number;
+    }
+
+    while (nbr > 0)
+    {
+        int reste = nbr % gived_base;
+        result[index++] = digits[reste];
+        nbr = nbr / gived_base;
+    }
+
+    result[index] = '\0';
+
+    // Inverser la chaîne
+    for (int i = 0, j = index - 1; i < j; i++, j--) {
+        char temp = result[i];
+        result[i] = result[j];
+        result[j] = temp;
+    }
+
+    number new_number = {gived_base, result, size};
+    return new_number;
+}
+/*number to_number(unsigned int nbr, unsigned char gived_base)
+{
+    char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
     int size = (nbr == 0) ? 1 : (int)(log(nbr) / log(gived_base)) + 1;
 
     char *result = malloc(size * sizeof(char));//allocation dynamique sur le tas 
     //memset(result , 'o' , size ); // remplissage 
 
     int index = 0;
-    if (!is_valid_base(gived_base))
+    if (1)
     {
         gived_base = 16;
     }
@@ -49,7 +94,8 @@ number to_number(unsigned int nbr, unsigned char gived_base)
     {
         result[index++] = '0';
         result[index] = '\0';
-        return;
+        number new_number = {BASE_16, result, size};
+        return new_number;
     }
 
     while (nbr > 0)
@@ -71,14 +117,13 @@ number to_number(unsigned int nbr, unsigned char gived_base)
     }
     number new_number = {gived_base,result,size};
     return new_number;
-}
+}*/
 
-bool is_valid_base(base gived_base)
+/*bool is_valid_base( int gived_base)
 {
     return (gived_base == BASE_2 || gived_base == BASE_4 || gived_base == BASE_8 ||
             gived_base == BASE_16 || gived_base == BASE_32 || gived_base == BASE_64);
-}
-
+}*/
 
 unsigned int to_uint (number nbr)
 {
